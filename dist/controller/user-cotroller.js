@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const user_service_1 = require("../service/user-service");
+const middleware_1 = require("../util/middleware");
+const router = (0, express_1.Router)();
+router.post('/api/users', user_service_1.createUser);
+router.get('/api/users', middleware_1.userExtractor, user_service_1.getUsers);
+router.get('/api/users/:id', middleware_1.userExtractor, user_service_1.getUser);
+router.put('/api/users/:username', middleware_1.userExtractor, user_service_1.updateUser);
+exports.default = router;
